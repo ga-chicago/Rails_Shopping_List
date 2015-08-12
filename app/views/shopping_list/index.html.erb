@@ -1,0 +1,39 @@
+<h1>Shopping List</h1>
+
+<p>
+  Here is your current shopping list. <a href="/new"><button type="button">Add An Item</button></a>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <td>
+        Product
+      </td>
+      <td>
+        Quantity
+      </td>
+      <td>
+        Got it!
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @products.each do |item| %>
+  <tr>
+    <td>
+      <%= item.name %>
+    </td>
+    <td>
+      <%= item.quantity %>
+    </td>
+    <td>
+      <%= form_for item, url: {action: "delete"}, html: {class: "some_class_if_you_want_one"} do |f| %>
+        <%= f.hidden_field :id %>
+        <%= f.submit "Got It!" %>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
